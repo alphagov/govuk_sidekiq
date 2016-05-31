@@ -6,7 +6,7 @@ require "pathname"
 
 Gem::Specification.new do |spec|
   spec.name          = "govuk_sidekiq"
-  spec.version       = GOVUKSidekiq::VERSION
+  spec.version       = GovukSidekiq::VERSION
   spec.authors       = ["Elliot Crosby-McCullough"]
   spec.email         = ["elliot.cm@gmail.com"]
   spec.summary       = "Provides standard setup and behaviour for Sidekiq in GOV.UK applications."
