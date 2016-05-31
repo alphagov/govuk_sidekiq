@@ -6,7 +6,7 @@ require "pathname"
 
 Gem::Specification.new do |spec|
   spec.name          = "govuk_sidekiq"
-  spec.version       = GOVUKSidekiq::VERSION
+  spec.version       = GovukSidekiq::VERSION
   spec.authors       = ["Elliot Crosby-McCullough"]
   spec.email         = ["elliot.cm@gmail.com"]
   spec.summary       = "Provides standard setup and behaviour for Sidekiq in GOV.UK applications."
@@ -16,6 +16,12 @@ Gem::Specification.new do |spec|
   spec.files         = Dir.glob("lib/**/*") + %w(README.md LICENCE.txt)
   spec.test_files    = Dir.glob("test/**/*")
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "sidekiq", "~> 4.1"
+  spec.add_dependency "sidekiq-statsd", "~> 0.1"
+  spec.add_dependency "sidekiq-logging-json", "~> 0.0"
+  spec.add_dependency "gds-api-adapters", ">= 19.1.0"
+  spec.add_dependency "airbrake", ">= 3.1.0"
 
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "rake", "~> 11.1"

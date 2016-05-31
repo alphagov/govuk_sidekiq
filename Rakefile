@@ -1,13 +1,7 @@
-require "gem_publisher"
-require "rake/testtask"
-require "bundler"
-
-desc "Run basic tests"
-Rake::TestTask.new("test") do |t|
-  t.libs << "test"
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
-  t.warning = true
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
 end
 
 desc "Publish gem to RubyGems"
@@ -16,4 +10,4 @@ task :publish_gem do |t|
   puts "Published #{published_gem}" if published_gem
 end
 
-task :default => :test
+task :default => :spec
