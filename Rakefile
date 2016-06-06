@@ -4,6 +4,7 @@ begin
 rescue LoadError
 end
 
+require "gem_publisher"
 desc "Publish gem to RubyGems"
 task :publish_gem do |t|
   published_gem = GemPublisher.publish_if_updated("govuk_sidekiq.gemspec", :rubygems)
