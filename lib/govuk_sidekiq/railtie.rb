@@ -1,3 +1,5 @@
+require "govuk_sidekiq/sidekiq_initializer"
+
 module GovukSidekiq
   class Railtie < Rails::Railtie
     initializer "govuk_sidekiq.initialize_sidekiq" do |app|
