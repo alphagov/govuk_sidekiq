@@ -1,5 +1,6 @@
 require "sidekiq"
 require "sidekiq/logging/json"
+require "sidekiq-statsd"
 require "airbrake"
 require "govuk_sidekiq/api_headers"
 
