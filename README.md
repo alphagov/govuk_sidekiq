@@ -3,6 +3,22 @@
 Provides a unified set of configurations and behaviours when using Sidekiq
 in GOV.UK applications.
 
+## Usage
+
+### Testing
+
+See [Sidekiq testing documentation](https://github.com/mperham/sidekiq/wiki/Testing)
+on how to test Sidekiq workers.
+
+
+Because of the way we use middleware, you may see errors that indicate that
+your job is called with the wrong number invalid arguments. To set up testing
+correctly, replace `require 'sidekiq/testing'` with:
+
+```ruby
+require 'govuk_sidekiq/testing'
+```
+
 ## Technical documentation
 
 When added to a Rails application, this gem uses a railtie to inject an

@@ -1,3 +1,5 @@
+* Add support for testing with `govuk_sidekiq/testing`
+
 # 0.0.1
 
 * Create a gem which automatically configures Sidekiq.
