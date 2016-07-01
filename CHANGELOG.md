@@ -1,3 +1,5 @@
+# 0.0.4
+
 * Add support for testing with `govuk_sidekiq/testing`
 
 # 0.0.1
