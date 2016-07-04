@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = Dir.glob("test/**/*")
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version = ">= 2.2"
+
   spec.add_dependency "sidekiq", "~> 4.1"
   spec.add_dependency "sidekiq-statsd", "~> 0.1"
   spec.add_dependency "sidekiq-logging-json", "~> 0.0"
