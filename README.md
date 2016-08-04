@@ -36,9 +36,11 @@ gem "govuk_sidekiq", "~> VERSION"
 ```
 
 This file also allows you to configure queues with priority.
-[See the Sidekiq wiki for available options](https://github.com/mperham/sidekiq/wiki/Advanced-Options)
+[See the Sidekiq wiki for available options](https://github.com/mperham/sidekiq/wiki/Advanced-Options).
 
 ### 3. Add a Procfile
+
+This is what puppet uses to create the process.
 
 ```sh
 # Procfile
@@ -71,9 +73,7 @@ See the [Pinfile](https://github.gds/gds/development/blob/master/Pinfile) and
 
 ### 7. Add app to sidekiq-monitoring
 
-See the opsmanual for a step-by-step guide:
-
-[HOWTO: Add sidekiq-monitoring to your application](https://github.gds/pages/gds/opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.html)
+See the opsmanual for a step-by-step guide: [HOWTO: Add sidekiq-monitoring to your application](https://github.gds/pages/gds/opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.html)
 
 ### 8. Create some jobs
 
