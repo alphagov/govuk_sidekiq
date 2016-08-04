@@ -7,10 +7,10 @@ in GOV.UK applications.
 
 What does `govuk_sidekiq` do for you?
 
-1. Makes sure Sidekiq can correctly connect to Redis, using the default
+1. Makes sure Sidekiq can connect to Redis correctly, using the default
   environment variables (these are set in [govuk-puppet](https://github.com/alphagov/govuk-puppet)).
 2. Makes sure that the correct HTTP headers are passed on to [gds-api-adapters](https://github.com/alphagov/gds-api-adapters).
- This means that for each request a unique ID (govuk_request_id) will be will be passed on to downstream applications.
+ This means that for each request a unique ID (govuk_request_id) will be passed on to downstream applications.
  [Read more about request tracing](https://github.gds/pages/gds/opsmanual/infrastructure/howto/setting-up-request-tracing.html).
 3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
  properly in Kibana.
@@ -49,13 +49,13 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 
 - Set `REDIS_HOST` and `REDIS_PORT` variables. `GOVUK_APP_NAME` should also be
 set, but this is already done by the default `govuk::app::config`.
-- Make sure puppet starts creates and starts the Procfile worker.
+- Make sure puppet creates and starts the Procfile worker.
 
 There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/collections_publisher.pp).
 
 ### 5. Configure deployment scripts
 
-Make sure you restart the worker after deploying by adding a hook to the [capistrano scripts in govuk-app-deployment](https://github.com/alphagov/govuk-app-deployment). Otherwise the worker will keep running the code.
+Make sure you restart the worker after deploying by adding a hook to the [capistrano scripts in govuk-app-deployment](https://github.com/alphagov/govuk-app-deployment). Otherwise the worker will keep running old code.
 
 ```ruby
 # your-application/config/deploy.rb
@@ -90,7 +90,7 @@ See [Sidekiq testing documentation](https://github.com/mperham/sidekiq/wiki/Test
 on how to test Sidekiq workers.
 
 Because of the way we use middleware, you may see errors that indicate that
-your job is called with the wrong number invalid arguments. To set up testing
+your job is called with the wrong number of arguments. To set up testing
 correctly, replace `require 'sidekiq/testing'` with:
 
 ```ruby
