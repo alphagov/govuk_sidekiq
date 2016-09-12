@@ -1,3 +1,7 @@
+# 1.0.0
+
+* No changes. Version bump to indicate gem is stable.
+
 # 0.0.4
 
 * Add support for testing with `govuk_sidekiq/testing`
