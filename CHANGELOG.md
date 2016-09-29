@@ -1,3 +1,7 @@
+# 1.0.1
+
+* Upgrade to Sidekiq 4.2.2.
+
 # 1.0.0
 
 * No changes. Version bump to indicate gem is stable.
