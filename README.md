@@ -50,7 +50,9 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 ### 4. Configure puppet
 
 - Set `REDIS_HOST` and `REDIS_PORT` variables. `GOVUK_APP_NAME` should also be
-set, but this is already done by the default `govuk::app::config`.
+set, but this is already done by the default `govuk::app::config`. If you redis instance
+requires more advance connection settings (eg username and password) you can instead
+set a `REDIS_URL` variable, this will take precidence over `REDIS_HOST` and `REDIS_PORT`.
 - Make sure puppet creates and starts the Procfile worker.
 
 There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/collections_publisher.pp).
