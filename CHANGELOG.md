@@ -1,3 +1,7 @@
+# 1.0.2
+
+* Upgrade to Sidekiq 4.2.8.
+
 # 1.0.1
 
 * Upgrade to Sidekiq 4.2.2.
