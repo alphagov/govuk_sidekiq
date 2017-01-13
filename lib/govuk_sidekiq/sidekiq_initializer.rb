@@ -11,6 +11,7 @@ module GovukSidekiq
         host: redis_host,
         port: redis_port,
         namespace: govuk_app_name,
+        reconnect_attempts: 1,
       }
 
       Sidekiq.configure_server do |config|
