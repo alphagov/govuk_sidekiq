@@ -1,3 +1,8 @@
+# 1.0.3
+
+* Explicitly set `reconnect_attempts: 1` in client and server configuration,
+  to fix Sidekiq regression.
+
 # 1.0.2
 
 * Upgrade to Sidekiq 4.2.8.
