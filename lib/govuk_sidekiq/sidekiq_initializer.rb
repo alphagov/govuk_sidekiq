@@ -6,13 +6,11 @@ require "govuk_sidekiq/api_headers"
 
 module GovukSidekiq
   module SidekiqInitializer
-    def self.setup_sidekiq(govuk_app_name, redis_host, redis_port)
-      redis_config = {
-        host: redis_host,
-        port: redis_port,
+    def self.setup_sidekiq(govuk_app_name, redis_config)
+      redis_config = redis_config.merge(
         namespace: govuk_app_name,
         reconnect_attempts: 1,
-      }
+      )
 
       Sidekiq.configure_server do |config|
         config.redis = redis_config
