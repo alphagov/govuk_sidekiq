@@ -53,6 +53,13 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 set, but this is already done by the default `govuk::app::config`. If your Redis instance
 requires more advanced connection settings (eg username and password) you can instead
 set a `REDIS_URL` variable, this will take precidence over `REDIS_HOST` and `REDIS_PORT`.
+
+    Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml). For example:
+    
+    ```
+    govuk::apps::your_app::redis_host: "%{hiera('sidekiq_host')}"
+    govuk::apps::your_app::redis_port: "%{hiera('sidekiq_port')}"
+    ```
 - Make sure puppet creates and starts the Procfile worker.
 
 There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/collections_publisher.pp).
