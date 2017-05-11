@@ -82,7 +82,7 @@ See the [Pinfile](https://github.gds/gds/development/blob/master/Pinfile) and
 
 ### 7. Add app to sidekiq-monitoring
 
-See the opsmanual for a step-by-step guide: [HOWTO: Add sidekiq-monitoring to your application](https://github.gds/pages/gds/opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.html)
+See the opsmanual for a step-by-step guide: [HOWTO: Add sidekiq-monitoring to your application](https://docs.publishing.service.gov.uk/manual/setting-up-new-sidekiq-monitoring-app.html)
 
 ### 8. Create some jobs
 
