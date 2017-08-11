@@ -1,4 +1,4 @@
-# Unreleased
+# 2.0.0
 
 * BREAKING. Remove automatic integration with Airbrake, as we are moving to use Sentry. To keep using this gem with Airbrake you can still add the following to an initialiser:
 
