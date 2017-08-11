@@ -1,7 +1,6 @@
 require "sidekiq"
 require "sidekiq/logging/json"
 require "sidekiq-statsd"
-require "airbrake"
 require "govuk_sidekiq/api_headers"
 
 module GovukSidekiq
@@ -14,7 +13,6 @@ module GovukSidekiq
 
       Sidekiq.configure_server do |config|
         config.redis = redis_config
-        config.error_handlers << Proc.new { |ex, context_hash| Airbrake.notify(ex, context_hash) }
 
         config.server_middleware do |chain|
           chain.add Sidekiq::Statsd::ServerMiddleware, env: "govuk.app.#{govuk_app_name}", prefix: "workers"

@@ -1,3 +1,15 @@
+# Unreleased
+
+* BREAKING. Remove automatic integration with Airbrake, as we are moving to use Sentry. To keep using this gem with Airbrake you can still add the following to an initialiser:
+
+```ruby
+require 'airbrake'
+
+Sidekiq.configure_server do |config|
+  config.error_handlers << Proc.new { |ex, context_hash| Airbrake.notify(ex, context_hash) }
+end
+```
+
 # 1.0.3
 
 * Explicitly set `reconnect_attempts: 1` in client and server configuration,
