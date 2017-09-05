@@ -10,13 +10,14 @@ What does `govuk_sidekiq` do for you?
 1. Makes sure Sidekiq can connect to Redis correctly, using the default
   environment variables (these are set in [govuk-puppet](https://github.com/alphagov/govuk-puppet)).
 2. Makes sure that the correct HTTP headers are passed on to [gds-api-adapters](https://github.com/alphagov/gds-api-adapters).
- This means that for each request a unique ID (govuk_request_id) will be passed on to downstream applications.
- [Read more about request tracing](https://github.gds/pages/gds/opsmanual/infrastructure/howto/setting-up-request-tracing.html).
+ This means that for each request a unique ID (`govuk_request_id`) will be passed on to downstream applications.
+ [Read more about request tracing][req-tracing].
 3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
  properly in Kibana.
 4. Sends activity stats to Statsd, so that you can make pretty graphs of activity
  in Grafana or Graphite. See the [Rummager dashboards for an example](https://grafana.publishing.service.gov.uk/dashboard/file/rummager_queues.json).
-5. Configures Sidekiq so that exceptions will be sent to our [Errbit instance](errbit.publishing.service.gov.uk).
+
+[req-tracing]: https://docs.publishing.service.gov.uk/manual/setting-up-request-tracing.html
 
 ## Installation (Rails only)
 
@@ -55,7 +56,7 @@ requires more advanced connection settings (eg username and password) you can in
 set a `REDIS_URL` variable, this will take precidence over `REDIS_HOST` and `REDIS_PORT`.
 
     Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml). For example:
-    
+
     ```
     govuk::apps::your_app::redis_host: "%{hiera('sidekiq_host')}"
     govuk::apps::your_app::redis_port: "%{hiera('sidekiq_port')}"
@@ -77,12 +78,16 @@ after "deploy:restart", "deploy:restart_procfile_worker"
 
 This makes sure that your development environment behaves like production.
 
-See the [Pinfile](https://github.gds/gds/development/blob/master/Pinfile) and
-[Procfile](https://github.gds/gds/development/blob/master/Procfile) for examples.
+See the [Pinfile][] and [Procfile][] for examples.
+
+[Pinfile]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm/Pinfile
+[Procfile]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm/Procfile
 
 ### 7. Add app to sidekiq-monitoring
 
-See the opsmanual for a step-by-step guide: [HOWTO: Add sidekiq-monitoring to your application](https://docs.publishing.service.gov.uk/manual/setting-up-new-sidekiq-monitoring-app.html)
+See the opsmanual for a step-by-step guide: [Add sidekiq-monitoring to your application][monitoring]
+
+[monitoring]: https://docs.publishing.service.gov.uk/manual/setting-up-new-sidekiq-monitoring-app.html
 
 ### 8. Create some jobs
 
