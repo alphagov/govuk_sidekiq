@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sidekiq-statsd", "~> 0.1"
   spec.add_dependency "sidekiq-logging-json", "~> 0.0"
   spec.add_dependency "gds-api-adapters", ">= 19.1.0"
-  spec.add_dependency "redis-namespace", "~> 1.5.2"
+  spec.add_dependency "redis-namespace", ">= 1.5.2", "< 1.7.0"
 
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "rake", "~> 11.1"
