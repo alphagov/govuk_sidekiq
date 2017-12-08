@@ -2,6 +2,7 @@ require "sidekiq"
 require "sidekiq/logging/json"
 require "sidekiq-statsd"
 require "govuk_sidekiq/api_headers"
+require "govuk_app_config/govuk_statsd"
 
 module GovukSidekiq
   module SidekiqInitializer
@@ -15,7 +16,7 @@ module GovukSidekiq
         config.redis = redis_config
 
         config.server_middleware do |chain|
-          chain.add Sidekiq::Statsd::ServerMiddleware, env: "govuk.app.#{govuk_app_name}", prefix: "workers"
+          chain.add Sidekiq::Statsd::ServerMiddleware, statsd: GovukStatsd, env: nil, prefix: "workers"
           chain.add GovukSidekiq::APIHeaders::ServerMiddleware
         end
       end

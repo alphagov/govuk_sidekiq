@@ -1,3 +1,13 @@
+# Unreleased
+
+* BREAKING. Your statsd namespace will likely change with this version, to a
+form of `govuk.app.<app_name>.<hostname>` unless you are already using
+the `GOVUK_STATSD_PREFIX` environment variable for your statsd.
+
+* Loosen dependencies, now will support Sidekiq 5
+* Introduce dependency on [govuk_app_config](https://github.com/alphagov/govuk_app_config)
+* Use GovukStatsd as the statsd client for sidekiq-statsd
+
 # 2.0.0
 
 * BREAKING. Remove automatic integration with Airbrake, as we are moving to use Sentry. To keep using this gem with Airbrake you can still add the following to an initialiser:
