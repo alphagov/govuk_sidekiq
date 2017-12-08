@@ -7,8 +7,8 @@ require "pathname"
 Gem::Specification.new do |spec|
   spec.name          = "govuk_sidekiq"
   spec.version       = GovukSidekiq::VERSION
-  spec.authors       = ["Elliot Crosby-McCullough"]
-  spec.email         = ["elliot.cm@gmail.com"]
+  spec.authors       = ["GOV.UK Dev"]
+  spec.email         = ["govuk-dev@digital.cabinet-office.gov.uk"]
   spec.summary       = "Provides standard setup and behaviour for Sidekiq in GOV.UK applications."
   spec.homepage      = "http://github.com/alphagov/govuk_sidekiq"
   spec.license       = "MIT"
