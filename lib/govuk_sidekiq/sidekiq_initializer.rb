@@ -18,6 +18,7 @@ module GovukSidekiq
         config.server_middleware do |chain|
           chain.add Sidekiq::Statsd::ServerMiddleware, statsd: GovukStatsd, env: nil, prefix: "workers"
           chain.add GovukSidekiq::APIHeaders::ServerMiddleware
+          chain.add GovukSidekiq::ErrorHandling::RetryWithoutAlertMiddleware
         end
       end
 

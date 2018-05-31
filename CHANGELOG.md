@@ -1,3 +1,8 @@
+# Unreleased
+
+* Raise a special `RetryableError` exception if the worker is due to be retried. This means
+  you can ignore this exception in your error reporting.
+
 # 3.0.0
 
 * BREAKING. Your statsd namespace will likely change with this version, to a
