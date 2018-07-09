@@ -35,6 +35,19 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
       expect(job["args"].last[:authenticated_user]).to eq(preexisting_authenticated_user)
     end
   end
+
+  it "doesn't adds the govuk_request_id and govuk_authenticated_user to the job arguments if they are nil" do
+    GdsApi::GovukHeaders.set_header(:govuk_request_id, nil)
+    GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, nil)
+
+    job = {
+      "args" => []
+    }
+
+    described_class.new.call("worker_class", job, "queue", "redis_pool") do
+      expect(job["args"]).to eq([])
+    end
+  end
 end
 
 RSpec.describe GovukSidekiq::APIHeaders::ServerMiddleware do
