@@ -1,3 +1,7 @@
+# UNRELEASED
+
+* Do not add API middleware arguments if they already exist.
+
 # 3.0.0
 
 * BREAKING. Your statsd namespace will likely change with this version, to a
