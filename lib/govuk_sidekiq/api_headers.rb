@@ -8,7 +8,12 @@ module GovukSidekiq
     # https://github.com/mperham/sidekiq/wiki/Middleware#client-side-middleware
     class ClientMiddleware
       def call(worker_class, job, queue, redis_pool)
-        job["args"] << header_arguments
+        last_arg = job["args"].last
+
+        if needs_headers(last_arg)
+          job["args"] << header_arguments
+        end
+
         yield
       end
 
@@ -17,6 +22,11 @@ module GovukSidekiq
           authenticated_user: GdsApi::GovukHeaders.headers[:x_govuk_authenticated_user],
           request_id: GdsApi::GovukHeaders.headers[:govuk_request_id],
         }
+      end
+
+      def needs_headers(last_arg)
+        has_args = last_arg.is_a?(Hash) && last_arg.symbolize_keys.keys.include?(:authenticated_user) && last_arg.symbolize_keys.keys.include?(:request_id)
+        !has_args && header_arguments[:authenticated_user].present? && header_arguments[:request_id].present?
       end
     end
 
