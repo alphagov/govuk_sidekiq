@@ -1,4 +1,4 @@
-# UNRELEASED
+# 3.0.1
 
 * Do not add API middleware arguments if they already exist.
 
