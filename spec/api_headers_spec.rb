@@ -5,6 +5,9 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
   let(:govuk_request_id) { "some-unique-request-id" }
   let(:govuk_authenticated_user) { "some-unique-user-id" }
 
+  let(:preexisting_request_id) { "some-preexisting-request-id" }
+  let(:preexisting_authenticated_user) { "some-preexisting-user-id" }
+
   it "adds the govuk_request_id and govuk_authenticated_user to the job arguments" do
     GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
@@ -16,6 +19,20 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
       expect(job["args"].last[:request_id]).to eq(govuk_request_id)
       expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+    end
+  end
+
+  it "doesn't adds the govuk_request_id and govuk_authenticated_user to the job arguments if they are already present" do
+    GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
+    GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
+
+    job = {
+      "args" => [{authenticated_user: preexisting_authenticated_user, request_id: preexisting_request_id}]
+    }
+
+    described_class.new.call("worker_class", job, "queue", "redis_pool") do
+      expect(job["args"].last[:request_id]).to eq(preexisting_request_id)
+      expect(job["args"].last[:authenticated_user]).to eq(preexisting_authenticated_user)
     end
   end
 end
