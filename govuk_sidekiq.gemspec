@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://github.com/alphagov/govuk_sidekiq"
   spec.license       = "MIT"
 
-  spec.files         = Dir.glob("lib/**/*") + %w(README.md LICENCE.txt)
+  spec.files         = Dir.glob("lib/**/*") + %w(README.md LICENCE)
   spec.test_files    = Dir.glob("test/**/*")
   spec.require_paths = ["lib"]
 
