@@ -1,3 +1,7 @@
+# UNRELEASED
+
+* Set the `request_id` even if the `govuk_authenticated_user` is missing, and vice versa.
+
 # 3.0.1
 
 * Do not add API middleware arguments if they already exist.
