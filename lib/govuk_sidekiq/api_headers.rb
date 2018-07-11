@@ -10,7 +10,10 @@ module GovukSidekiq
       def call(worker_class, job, queue, redis_pool)
         last_arg = job["args"].last
 
-        if needs_headers(last_arg)
+        if is_header_hash(last_arg)
+          job["args"].pop
+          job["args"] << header_arguments.merge(last_arg)
+        else
           job["args"] << header_arguments
         end
 
@@ -24,9 +27,8 @@ module GovukSidekiq
         }
       end
 
-      def needs_headers(last_arg)
-        has_args = last_arg.is_a?(Hash) && last_arg.symbolize_keys.keys.include?(:authenticated_user) && last_arg.symbolize_keys.keys.include?(:request_id)
-        !has_args && header_arguments[:authenticated_user].present? && header_arguments[:request_id].present?
+      def is_header_hash(arg)
+        arg.is_a?(Hash) && (arg.symbolize_keys.keys.include?(:authenticated_user) || arg.symbolize_keys.keys.include?(:request_id))
       end
     end
 

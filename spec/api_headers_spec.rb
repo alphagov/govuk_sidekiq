@@ -22,7 +22,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     end
   end
 
-  it "doesn't adds the govuk_request_id and govuk_authenticated_user to the job arguments if they are already present" do
+  it "doesn't add the govuk_request_id and govuk_authenticated_user to the job arguments if they are already present" do
     GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
@@ -36,16 +36,43 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     end
   end
 
-  it "doesn't adds the govuk_request_id and govuk_authenticated_user to the job arguments if they are nil" do
-    GdsApi::GovukHeaders.set_header(:govuk_request_id, nil)
-    GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, nil)
+  it "adds the govuk_request_id if it is missing but govuk_authenticated_user is present" do
+    GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
 
     job = {
-      "args" => []
+      "args" => [{authenticated_user: govuk_authenticated_user}]
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
-      expect(job["args"]).to eq([])
+      expect(job["args"].last[:request_id]).to eq(govuk_request_id)
+      expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+    end
+  end
+
+  it "adds the govuk_authenticated_user if it is missing but govuk_request_id is present" do
+    GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
+
+    job = {
+      "args" => [{request_id: govuk_request_id}]
+    }
+
+    described_class.new.call("worker_class", job, "queue", "redis_pool") do
+      expect(job["args"].last[:request_id]).to eq(govuk_request_id)
+      expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+    end
+  end
+
+  it "doesn't affect other values in the metadata hash" do
+    GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
+
+    job = {
+      "args" => [{request_id: govuk_request_id, other_request_id: preexisting_request_id}]
+    }
+
+    described_class.new.call("worker_class", job, "queue", "redis_pool") do
+      expect(job["args"].last[:request_id]).to eq(govuk_request_id)
+      expect(job["args"].last[:other_request_id]).to eq(preexisting_request_id)
+      expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
     end
   end
 end
