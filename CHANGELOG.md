@@ -1,3 +1,7 @@
+# Unreleased
+
+* Only use JSON logging when a log file is specified
+
 # 3.0.2
 
 * Set the `request_id` even if the `govuk_authenticated_user` is missing, and vice versa.
