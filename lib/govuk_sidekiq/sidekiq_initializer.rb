@@ -29,7 +29,7 @@ module GovukSidekiq
         end
       end
 
-      Sidekiq.logger.formatter = Sidekiq::Logging::Json::Logger.new
+      Sidekiq.logger.formatter = Sidekiq::Logging::Json::Logger.new if Sidekiq.options[:logfile]
     end
   end
 end
