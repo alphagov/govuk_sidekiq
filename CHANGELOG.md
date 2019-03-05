@@ -1,4 +1,4 @@
-# Unreleased
+# 3.0.3
 
 * Only use JSON logging when a log file is specified
 
