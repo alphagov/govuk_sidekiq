@@ -1,3 +1,7 @@
+# 3.0.4
+
+* Allow for newer versions of sidekiq-statsd (trial period).
+
 # 3.0.3
 
 * Only use JSON logging when a log file is specified
