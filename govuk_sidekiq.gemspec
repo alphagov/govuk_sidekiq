@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.2"
 
   spec.add_dependency "sidekiq", ">= 5", "< 6"
-  spec.add_dependency "sidekiq-statsd", ">= 0.1"
+  spec.add_dependency "sidekiq-statsd", ">= 2.1"
   spec.add_dependency "sidekiq-logging-json", "~> 0.0"
   spec.add_dependency "gds-api-adapters", ">= 19.1.0"
   spec.add_dependency "redis-namespace", "~> 1.6"
