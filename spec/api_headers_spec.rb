@@ -13,7 +13,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
     job = {
-      "args" => []
+      "args" => [],
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
@@ -27,7 +27,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
     job = {
-      "args" => [{authenticated_user: preexisting_authenticated_user, request_id: preexisting_request_id}]
+      "args" => [{ authenticated_user: preexisting_authenticated_user, request_id: preexisting_request_id }],
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
@@ -40,7 +40,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
 
     job = {
-      "args" => [{authenticated_user: govuk_authenticated_user}]
+      "args" => [{ authenticated_user: govuk_authenticated_user }],
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
@@ -53,7 +53,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
     job = {
-      "args" => [{request_id: govuk_request_id}]
+      "args" => [{ request_id: govuk_request_id }],
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
@@ -66,7 +66,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do
     GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
     job = {
-      "args" => [{request_id: govuk_request_id, other_request_id: preexisting_request_id}]
+      "args" => [{ request_id: govuk_request_id, other_request_id: preexisting_request_id }],
     }
 
     described_class.new.call("worker_class", job, "queue", "redis_pool") do
@@ -86,7 +86,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ServerMiddleware do
       "args" => [
         "some arg",
         { "authenticated_user" => govuk_authenticated_user, "request_id" => govuk_request_id },
-      ]
+      ],
     }
 
     described_class.new.call("worker", message, "queue") do
@@ -101,7 +101,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ServerMiddleware do
       "args" => [
         "some arg",
         "some other arg",
-      ]
+      ],
     }
 
     original_message = message.dup
@@ -117,7 +117,7 @@ RSpec.describe GovukSidekiq::APIHeaders::ServerMiddleware do
     message = {
       "args" => [
         { "some arg" => "some value" },
-      ]
+      ],
     }
 
     original_message = message.dup

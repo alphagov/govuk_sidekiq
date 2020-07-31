@@ -7,7 +7,7 @@ module GovukSidekiq
     #
     # https://github.com/mperham/sidekiq/wiki/Middleware#client-side-middleware
     class ClientMiddleware
-      def call(worker_class, job, queue, redis_pool)
+      def call(_worker_class, job, _queue, _redis_pool)
         last_arg = job["args"].last
 
         if is_header_hash(last_arg)
@@ -36,7 +36,7 @@ module GovukSidekiq
     #
     # https://github.com/mperham/sidekiq/wiki/Middleware#server-side-middleware
     class ServerMiddleware
-      def call(worker, message, queue)
+      def call(_worker, message, _queue)
         last_arg = message["args"].last
 
         if last_arg.is_a?(Hash) && last_arg.keys.include?("request_id")
