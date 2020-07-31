@@ -3,7 +3,6 @@ require "govuk_sidekiq/testing"
 require "govuk_sidekiq/sidekiq_initializer"
 
 RSpec.describe "Check a Sidekiq Worker can perform" do
-
   class TestWorker
     include Sidekiq::Worker
 
@@ -24,5 +23,4 @@ RSpec.describe "Check a Sidekiq Worker can perform" do
       end
     }.not_to raise_error
   end
-
 end
