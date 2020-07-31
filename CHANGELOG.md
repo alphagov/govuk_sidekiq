@@ -1,3 +1,7 @@
+# Unreleased
+
+* BREAKING: Set the required Ruby version to >= 2.6
+
 # 3.0.5
 
 * Pin sidekiq-statsd above 2.1.0 (so we get new metrics).
