@@ -1,4 +1,4 @@
-# Unreleased
+# 4.0.0
 
 * BREAKING: Set the required Ruby version to >= 2.6
 
