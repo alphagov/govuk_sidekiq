@@ -6,7 +6,7 @@ require "govuk_app_config/govuk_statsd"
 
 module GovukSidekiq
   module SidekiqInitializer
-    def self.setup_sidekiq(govuk_app_name, redis_config)
+    def self.setup_sidekiq(govuk_app_name, redis_config = {})
       redis_config = redis_config.merge(
         namespace: govuk_app_name,
         reconnect_attempts: 1,

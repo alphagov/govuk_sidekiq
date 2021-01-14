@@ -50,10 +50,8 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 
 ### 4. Configure puppet
 
-- Set `REDIS_HOST` and `REDIS_PORT` variables. `GOVUK_APP_NAME` should also be
-set, but this is already done by the default `govuk::app::config`. If your Redis instance
-requires more advanced connection settings (eg username and password) you can instead
-set a `REDIS_URL` variable, this will take precidence over `REDIS_HOST` and `REDIS_PORT`.
+- Set a `REDIS_URL` environment variable. `GOVUK_APP_NAME` should also be
+set, but this is already done by the default `govuk::app::config`.
 
     Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml). For example:
 
