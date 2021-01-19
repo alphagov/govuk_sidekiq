@@ -1,3 +1,7 @@
+# 5.0.0
+
+* BREAKING: Redis is configured with REDIS_URL environment, the previous approach (REDIS_HOST and REDIS_PORT) is no longer supported.
+
 # 4.0.0
 
 * BREAKING: Set the required Ruby version to >= 2.6
