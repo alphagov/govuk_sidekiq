@@ -1,4 +1,4 @@
-# Unreleased
+# 5.0.0
 
 * BREAKING: Redis is configured with REDIS_URL environment, the previous approach (REDIS_HOST and REDIS_PORT) is no longer supported.
 
