@@ -1,5 +1,4 @@
 require "sidekiq"
-require "sidekiq/logging/json"
 require "sidekiq-statsd"
 require "govuk_sidekiq/api_headers"
 require "govuk_app_config/govuk_statsd"
@@ -13,6 +12,8 @@ module GovukSidekiq
       )
 
       Sidekiq.configure_server do |config|
+        config.log_formatter = Sidekiq::Logger::Formatters::JSON.new
+
         config.redis = redis_config
 
         config.server_middleware do |chain|
@@ -28,8 +29,6 @@ module GovukSidekiq
           chain.add GovukSidekiq::APIHeaders::ClientMiddleware
         end
       end
-
-      Sidekiq.logger.formatter = Sidekiq::Logging::Json::Logger.new if Sidekiq.options[:logfile]
     end
   end
 end
