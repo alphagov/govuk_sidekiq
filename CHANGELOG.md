@@ -1,3 +1,7 @@
+# 6.0.0-pre
+
+* BREAKING: Logging is now handled using stdout, this is in preparation for an upgrade to sidekiq version 6.0 which doesn't support logging to JSON files. Really, really breaking, govuk apps don't support this at all, only releasing because we can't replicate the logging behaviour locally and we need to test things. Do not upgrade to this version.
+
 # 5.0.0
 
 * BREAKING: Redis is configured with REDIS_URL environment, the previous approach (REDIS_HOST and REDIS_PORT) is no longer supported.
