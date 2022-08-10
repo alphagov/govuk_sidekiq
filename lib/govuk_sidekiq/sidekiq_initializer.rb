@@ -16,7 +16,9 @@ module GovukSidekiq
         config.redis = redis_config
 
         config.server_middleware do |chain|
-          chain.add Sidekiq::Statsd::ServerMiddleware, statsd: GovukStatsd, env: nil, prefix: "workers"
+          unless ENV["GOVUK_PROMETHEUS_EXPORTER"] == "true"
+            chain.add Sidekiq::Statsd::ServerMiddleware, statsd: GovukStatsd, env: nil, prefix: "workers"
+          end
           chain.add GovukSidekiq::APIHeaders::ServerMiddleware
         end
       end
