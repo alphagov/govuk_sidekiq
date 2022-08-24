@@ -28,7 +28,7 @@ module GovukSidekiq
         end
       end
 
-      Sidekiq.logger = Logger.new($stdout)
+      # Sidekiq.logger = Logger.new($stdout)
     end
   end
 end
