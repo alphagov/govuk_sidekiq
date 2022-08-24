@@ -1,3 +1,3 @@
 module GovukSidekiq
-  VERSION = "6.0.0-pre".freeze
+  VERSION = "5.0.0".freeze
 end
