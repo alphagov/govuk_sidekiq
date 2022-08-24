@@ -1,5 +1,4 @@
 require "sidekiq"
-require "sidekiq/logging/json"
 require "sidekiq-statsd"
 require "govuk_sidekiq/api_headers"
 require "govuk_app_config/govuk_statsd"
@@ -29,7 +28,7 @@ module GovukSidekiq
         end
       end
 
-      Sidekiq.logger.formatter = Sidekiq::Logging::Json::Logger.new if Sidekiq.options[:logfile]
+      Sidekiq.logger = Logger.new($stdout)
     end
   end
 end

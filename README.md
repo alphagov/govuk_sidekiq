@@ -12,9 +12,7 @@ What does `govuk_sidekiq` do for you?
 2. Makes sure that the correct HTTP headers are passed on to [gds-api-adapters](https://github.com/alphagov/gds-api-adapters).
  This means that for each request a unique ID (`govuk_request_id`) will be passed on to downstream applications.
  [Read more about request tracing][req-tracing].
-3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
- properly in Kibana.
-4. Sends activity stats to Statsd, so that you can make pretty graphs of activity
+3. Sends activity stats to Statsd, so that you can make pretty graphs of activity
  in Grafana or Graphite. See the [Rummager dashboards for an example](https://grafana.publishing.service.gov.uk/dashboard/file/rummager_queues.json).
 
 [req-tracing]: https://docs.publishing.service.gov.uk/manual/setting-up-request-tracing.html
