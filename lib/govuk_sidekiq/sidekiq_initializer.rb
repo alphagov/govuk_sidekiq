@@ -12,7 +12,7 @@ module GovukSidekiq
       )
 
       Sidekiq.configure_server do |config|
-        config.log_formatter = Sidekiq::Logger::Formatters::JSON.new
+        config.log_formatter = Sidekiq::Logger::Formatters::JSON.new if ENV["GOVUK_SIDEKIQ_JSON_LOGGING"]
 
         config.redis = redis_config
 
