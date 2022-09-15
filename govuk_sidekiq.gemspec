@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sidekiq-logging-json", "~> 0.0"
   spec.add_dependency "sidekiq-statsd", ">= 2.1"
 
-  spec.add_development_dependency "railties", "~> 5.0"
+  spec.add_development_dependency "railties", "~> 7.0"
   spec.add_development_dependency "rake", "~> 12.3"
   spec.add_development_dependency "rspec", "~> 3.4"
 
