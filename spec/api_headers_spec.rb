@@ -1,4 +1,3 @@
-require "spec_helper"
 require "govuk_sidekiq/api_headers"
 
 RSpec.describe GovukSidekiq::APIHeaders::ClientMiddleware do

@@ -1,4 +1,3 @@
-require "spec_helper"
 require "rails"
 require "govuk_sidekiq/railtie"
 
