@@ -25,7 +25,7 @@ What does `govuk_sidekiq` do for you?
 
 ```ruby
 # Gemfile
-gem "govuk_sidekiq", "~> VERSION"
+gem "govuk_sidekiq"
 ```
 
 ### 2. Add a Sidekiq config file
@@ -53,7 +53,7 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 - Set a `REDIS_URL` environment variable. `GOVUK_APP_NAME` should also be
 set, but this is already done by the default `govuk::app::config`.
 
-    Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml). For example:
+    Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml). For example:
 
     ```
     govuk::apps::your_app::redis_host: "%{hiera('sidekiq_host')}"
@@ -61,7 +61,7 @@ set, but this is already done by the default `govuk::app::config`.
     ```
 - Make sure puppet creates and starts the Procfile worker.
 
-There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/collections_publisher.pp).
+There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/collections_publisher.pp).
 
 ### 5. Configure deployment scripts
 
@@ -72,18 +72,9 @@ Make sure you restart the worker after deploying by adding a hook to the [capist
 after "deploy:restart", "deploy:restart_procfile_worker"
 ```
 
-### 6. Add your worker to the Procfile & Pinfile
+### 6. Add app to sidekiq-monitoring
 
-This makes sure that your development environment behaves like production.
-
-See the [Pinfile][] and [Procfile][] for examples.
-
-[Pinfile]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm/Pinfile
-[Procfile]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm/Procfile
-
-### 7. Add app to sidekiq-monitoring
-
-See the opsmanual for a step-by-step guide: [Add sidekiq-monitoring to your application][monitoring]
+See the dev docs for a step-by-step guide: [Add sidekiq-monitoring to your application][monitoring]
 
 [monitoring]: https://docs.publishing.service.gov.uk/manual/setting-up-new-sidekiq-monitoring-app.html
 
@@ -119,7 +110,3 @@ require 'govuk_sidekiq/testing'
 ## Licence
 
 [MIT License](LICENCE)
-
-## Versioning policy
-
-See https://github.com/alphagov/styleguides/blob/master/rubygems.md#versioning
