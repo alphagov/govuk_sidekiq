@@ -3,20 +3,15 @@ require "rails"
 require "govuk_sidekiq/railtie"
 
 RSpec.describe GovukSidekiq::Railtie do
-  let(:test_app) do
-    Class.new(Rails::Application) do
-      config.root = File.dirname(__FILE__)
-      config.eager_load = false
+  let(:app) { instance_double("Rails::Application", root: Pathname.new("rails/app")) }
+  let(:default_app_name) { "app" }
 
-      Rails.logger = config.logger = Logger.new(nil)
-    end
-  end
-  let(:app_name) { test_app.root.basename.to_s }
+  it "initializes SidekiqInitializer with default options" do
+    expect(GovukSidekiq::SidekiqInitializer)
+      .to receive(:setup_sidekiq)
+      .with(default_app_name, { url: "redis://127.0.0.1:6379" })
 
-  it "loads the SidekiqInitializer with the default config" do
-    expected_config = { url: "redis://127.0.0.1:6379" }
-    expect(GovukSidekiq::SidekiqInitializer).to receive(:setup_sidekiq).with(app_name, expected_config)
-    test_app.initialize!
+    described_class.initializers.first.run(app)
   end
 
   context "when ENV contains REDIS_URL" do
@@ -25,8 +20,11 @@ RSpec.describe GovukSidekiq::Railtie do
 
     it "loads the SidekiqInitializer with the redis url" do
       expected_config = { url: redis_url }
-      expect(GovukSidekiq::SidekiqInitializer).to receive(:setup_sidekiq).with(app_name, expected_config)
-      test_app.initialize!
+      expect(GovukSidekiq::SidekiqInitializer)
+        .to receive(:setup_sidekiq)
+        .with(default_app_name, expected_config)
+
+      described_class.initializers.first.run(app)
     end
   end
 
