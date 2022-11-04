@@ -1,4 +1,3 @@
-require "spec_helper"
 require "govuk_sidekiq/sidekiq_initializer"
 
 RSpec.describe GovukSidekiq::SidekiqInitializer do
