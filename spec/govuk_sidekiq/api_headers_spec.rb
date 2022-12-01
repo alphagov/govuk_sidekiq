@@ -17,8 +17,8 @@ RSpec.describe GovukSidekiq::APIHeaders do
       }
 
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
-        expect(job["args"].last[:request_id]).to eq(govuk_request_id)
-        expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+        expect(job["args"].last["request_id"]).to eq(govuk_request_id)
+        expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
       end
     end
 
@@ -27,12 +27,12 @@ RSpec.describe GovukSidekiq::APIHeaders do
       GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
       job = {
-        "args" => [{ authenticated_user: preexisting_authenticated_user, request_id: preexisting_request_id }],
+        "args" => [{ "authenticated_user" => preexisting_authenticated_user, "request_id" => preexisting_request_id }],
       }
 
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
-        expect(job["args"].last[:request_id]).to eq(preexisting_request_id)
-        expect(job["args"].last[:authenticated_user]).to eq(preexisting_authenticated_user)
+        expect(job["args"].last["request_id"]).to eq(preexisting_request_id)
+        expect(job["args"].last["authenticated_user"]).to eq(preexisting_authenticated_user)
       end
     end
 
@@ -40,12 +40,12 @@ RSpec.describe GovukSidekiq::APIHeaders do
       GdsApi::GovukHeaders.set_header(:govuk_request_id, govuk_request_id)
 
       job = {
-        "args" => [{ authenticated_user: govuk_authenticated_user }],
+        "args" => [{ "authenticated_user" => govuk_authenticated_user }],
       }
 
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
-        expect(job["args"].last[:request_id]).to eq(govuk_request_id)
-        expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+        expect(job["args"].last["request_id"]).to eq(govuk_request_id)
+        expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
       end
     end
 
@@ -53,12 +53,12 @@ RSpec.describe GovukSidekiq::APIHeaders do
       GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
       job = {
-        "args" => [{ request_id: govuk_request_id }],
+        "args" => [{ "request_id" => govuk_request_id }],
       }
 
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
-        expect(job["args"].last[:request_id]).to eq(govuk_request_id)
-        expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+        expect(job["args"].last["request_id"]).to eq(govuk_request_id)
+        expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
       end
     end
 
@@ -66,13 +66,13 @@ RSpec.describe GovukSidekiq::APIHeaders do
       GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, govuk_authenticated_user)
 
       job = {
-        "args" => [{ request_id: govuk_request_id, other_request_id: preexisting_request_id }],
+        "args" => [{ "request_id" => govuk_request_id, "other_request_id" => preexisting_request_id }],
       }
 
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
-        expect(job["args"].last[:request_id]).to eq(govuk_request_id)
-        expect(job["args"].last[:other_request_id]).to eq(preexisting_request_id)
-        expect(job["args"].last[:authenticated_user]).to eq(govuk_authenticated_user)
+        expect(job["args"].last["request_id"]).to eq(govuk_request_id)
+        expect(job["args"].last["other_request_id"]).to eq(preexisting_request_id)
+        expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
       end
     end
   end
