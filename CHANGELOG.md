@@ -1,3 +1,7 @@
+# Unreleased
+
+* Change Sidekiq dependency to "~> 5" rather than ">= 5, < 6" to ensure Sidekiq 6 pre-releases aren't installed.
+
 # 5.0.0
 
 * BREAKING: Redis is configured with REDIS_URL environment, the previous approach (REDIS_HOST and REDIS_PORT) is no longer supported.
