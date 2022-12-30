@@ -1,5 +1,4 @@
 require "sidekiq"
-require "sidekiq/logging/json"
 require "sidekiq-statsd"
 require "govuk_sidekiq/api_headers"
 require "govuk_app_config/govuk_statsd"
@@ -13,6 +12,17 @@ module GovukSidekiq
       )
 
       Sidekiq.configure_server do |config|
+        config.log_formatter = Sidekiq::Logger::Formatters::JSON.new if ENV["GOVUK_SIDEKIQ_JSON_LOGGING"]
+
+        # $real_stdout is defined by govuk_app_config and is used to point to
+        # STDOUT as that redirects $stdout to actually be $stderr.
+        # When govuk_app_config does this we need to use $real_stdout to output logs to STDOUT.
+        # https://github.com/alphagov/govuk_app_config/blob/08fd9cf6a848615261b3cef021e34490ed72ee55/lib/govuk_app_config/govuk_logging.rb#L18-L24
+
+        # rubocop:disable Style/GlobalVars
+        config.logger = Sidekiq::Logger.new($real_stdout) if defined?($real_stdout)
+        # rubocop:enable Style/GlobalVars
+
         config.redis = redis_config
 
         config.server_middleware do |chain|
@@ -28,8 +38,6 @@ module GovukSidekiq
           chain.add GovukSidekiq::APIHeaders::ClientMiddleware
         end
       end
-
-      Sidekiq.logger.formatter = Sidekiq::Logging::Json::Logger.new if Sidekiq.options[:logfile]
     end
   end
 end

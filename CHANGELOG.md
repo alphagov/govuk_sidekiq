@@ -1,6 +1,8 @@
-# Unreleased
+# 6.0.0
+* BREAKING: Upgrades the underlying version of Sidekiq to version 6. Will require changes to logging strategy;
 
-* Change Sidekiq dependency to "~> 5" rather than ">= 5, < 6" to ensure Sidekiq 6 pre-releases aren't installed.
+* Sidekiq arguments need to serialize safely to JSON otherwise [a warning is shown](https://github.com/mperham/sidekiq/blob/main/Changes.md#640)
+* Logging to a file no longer supported, must use STDOUT or STDERR
 
 # 5.0.0
 

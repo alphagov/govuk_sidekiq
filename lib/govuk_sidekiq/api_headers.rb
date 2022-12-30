@@ -22,8 +22,8 @@ module GovukSidekiq
 
       def header_arguments
         {
-          authenticated_user: GdsApi::GovukHeaders.headers[:x_govuk_authenticated_user],
-          request_id: GdsApi::GovukHeaders.headers[:govuk_request_id],
+          "authenticated_user" => GdsApi::GovukHeaders.headers[:x_govuk_authenticated_user],
+          "request_id" => GdsApi::GovukHeaders.headers[:govuk_request_id],
         }
       end
 
