@@ -1,3 +1,7 @@
+# Unreleased
+
+* Drop support for Ruby 2.7
+
 # 6.0.0
 * BREAKING: Upgrades the underlying version of Sidekiq to version 6. Will require changes to logging strategy;
 
