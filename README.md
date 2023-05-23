@@ -13,7 +13,7 @@ What does `govuk_sidekiq` do for you?
  This means that for each request a unique ID (`govuk_request_id`) will be passed on to downstream applications.
  [Read more about request tracing][req-tracing].
 3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
- properly in Kibana.
+ properly in Logit and searchable through Kibana.
 
 [req-tracing]: https://docs.publishing.service.gov.uk/manual/setting-up-request-tracing.html
 
