@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "govuk_app_config", ">= 1.1"
   spec.add_dependency "redis-namespace", "~> 1.6"
   spec.add_dependency "sidekiq", "~> 6"
-  spec.add_dependency "sidekiq-statsd", ">= 2.1"
 
   spec.add_development_dependency "climate_control", "~> 1.2"
   spec.add_development_dependency "railties", "~> 7"

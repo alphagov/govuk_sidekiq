@@ -14,8 +14,6 @@ What does `govuk_sidekiq` do for you?
  [Read more about request tracing][req-tracing].
 3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
  properly in Kibana.
-4. Sends activity stats to Statsd, so that you can make pretty graphs of activity
- in Grafana or Graphite. See the [Rummager dashboards for an example](https://grafana.publishing.service.gov.uk/dashboard/file/rummager_queues.json).
 
 [req-tracing]: https://docs.publishing.service.gov.uk/manual/setting-up-request-tracing.html
 
