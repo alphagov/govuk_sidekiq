@@ -1,6 +1,7 @@
 # Unreleased
 
 * Drop support for Ruby 2.7
+* Remove support for Statsd, as this is being [deprecated from `govuk_app_config` in a later release](https://github.com/alphagov/govuk_app_config/commit/71f4f2fa3871721e5c8140bcf73d683e09d8d7b2)
 
 # 6.0.0
 * BREAKING: Upgrades the underlying version of Sidekiq to version 6. Will require changes to logging strategy;
