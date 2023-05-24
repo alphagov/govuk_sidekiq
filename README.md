@@ -13,7 +13,7 @@ What does `govuk_sidekiq` do for you?
  This means that for each request a unique ID (`govuk_request_id`) will be passed on to downstream applications.
  [Read more about request tracing][req-tracing].
 3. Makes sure that we use JSON logging, so that Sidekiq logs will end up
- properly in Kibana.
+ properly in Logit and searchable through Kibana.
 
 [req-tracing]: https://docs.publishing.service.gov.uk/manual/setting-up-request-tracing.html
 
@@ -37,46 +37,20 @@ gem "govuk_sidekiq"
 This file also allows you to configure queues with priority.
 [See the Sidekiq wiki for available options](https://github.com/mperham/sidekiq/wiki/Advanced-Options).
 
-### 3. Add a Procfile
+### 3. Configure environment variables in EKS
 
-This is what puppet uses to create the process.
+For each environment ([integration](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml), [staging](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-staging.yaml) and [production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml)), add a `REDIS_URL` environment variable for your application with a value of `redis://shared-redis-govuk.eks.{environment}.govuk-internal.digital`.
 
-```sh
-# Procfile
-worker: bundle exec sidekiq -C ./config/sidekiq.yml
-```
+Additionally, set the value of `workerEnabled` to `true` for your application. This will [result in a `worker` process](https://github.com/alphagov/govuk-helm-charts/blob/8b008832b5e8f62f2f489d3b030be21945d2b08b/charts/generic-govuk-app/values.yaml#L16-L21) running alongside the web application. The queue length and max delay can be monitored using the [Sidekiq Grafana dashboard](https://grafana.eks.production.govuk.digital/d/sidekiq-queues), once the Sidekiq worker is initialised.
 
-### 4. Configure puppet
-
-- Set a `REDIS_URL` environment variable. `GOVUK_APP_NAME` should also be
-set, but this is already done by the default `govuk::app::config`.
-
-    Apply redis variables for your app in [the default config](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml). For example:
-
-    ```
-    govuk::apps::your_app::redis_host: "%{hiera('sidekiq_host')}"
-    govuk::apps::your_app::redis_port: "%{hiera('sidekiq_port')}"
-    ```
-- Make sure puppet creates and starts the Procfile worker.
-
-There's no step-by-step guide for this, but [you can copy the config from collections-publisher](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/collections_publisher.pp).
-
-### 5. Configure deployment scripts
-
-Make sure you restart the worker after deploying by adding a hook to the [capistrano scripts in govuk-app-deployment](https://github.com/alphagov/govuk-app-deployment). Otherwise the worker will keep running old code.
+There's no step-by-step guide for this, but [you can copy the changes made when Sidekiq was added to the release application](https://github.com/alphagov/govuk-helm-charts/pull/1117/files). You may also want to [resize resource requests](https://github.com/alphagov/govuk-helm-charts/pull/1121/files) for the app depending on the predicted request rate. 
 
 ```ruby
 # your-application/config/deploy.rb
 after "deploy:restart", "deploy:restart_procfile_worker"
 ```
 
-### 6. Add app to sidekiq-monitoring
-
-See the dev docs for a step-by-step guide: [Add sidekiq-monitoring to your application][monitoring]
-
-[monitoring]: https://docs.publishing.service.gov.uk/manual/setting-up-new-sidekiq-monitoring-app.html
-
-### 8. Create some jobs
+### 4. Create some jobs
 
 You can [use normal Sidekiq jobs](https://github.com/mperham/sidekiq/wiki/Getting-Started):
 
