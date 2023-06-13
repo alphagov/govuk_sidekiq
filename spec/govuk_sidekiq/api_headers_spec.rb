@@ -19,6 +19,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -33,6 +34,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(preexisting_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(preexisting_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => preexisting_request_id })
       end
     end
 
@@ -46,6 +48,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -59,6 +62,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -73,6 +77,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["other_request_id"]).to eq(preexisting_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
   end
@@ -93,6 +98,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
         expect(message["args"]).to eq(["some arg"])
         expect(GdsApi::GovukHeaders.headers[:govuk_request_id]).to eq(govuk_request_id)
         expect(GdsApi::GovukHeaders.headers[:x_govuk_authenticated_user]).to eq(govuk_authenticated_user)
+        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -107,6 +113,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       original_message = message.dup
 
       expect(GdsApi::GovukHeaders).not_to receive(:set_header)
+      expect(Sidekiq::Context).not_to receive(:add)
 
       described_class.new.call("worker", message, "queue") do
         expect(message).to eq(original_message)
@@ -123,6 +130,7 @@ RSpec.describe GovukSidekiq::APIHeaders do
       original_message = message.dup
 
       expect(GdsApi::GovukHeaders).not_to receive(:set_header)
+      expect(Sidekiq::Context).not_to receive(:add)
 
       described_class.new.call("worker", message, "queue") do
         expect(message).to eq(original_message)
