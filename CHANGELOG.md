@@ -1,3 +1,8 @@
+# 7.1.0
+
+* Add govuk_request_id to Sidekiq::Context so it will be included in logging
+* Introduce a GOV.UK Logging format which has a field structure similar to GOV.UK's Rails logstasher for consistent field names
+
 # 7.0.0
 
 * BREAKING: Drop support for Ruby 2.7
