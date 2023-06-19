@@ -10,6 +10,7 @@ module GovukSidekiq
         tid: tid,
         level: severity,
         message: message,
+        tags: %w[sidekiq],
       }
       ctx.each { |key, value| hash[key] = value unless hash[key] }
       Sidekiq.dump_json(hash) << "\n"
