@@ -1,4 +1,5 @@
 require "gds_api/govuk_headers"
+require "sidekiq"
 
 module GovukSidekiq
   module APIHeaders
@@ -16,6 +17,7 @@ module GovukSidekiq
         else
           job["args"] << header_arguments
         end
+        Sidekiq::Context.add("govuk_request_id", job["args"].last["request_id"])
 
         yield
       end
@@ -45,6 +47,7 @@ module GovukSidekiq
           authenticated_user = last_arg["authenticated_user"]
           GdsApi::GovukHeaders.set_header(:govuk_request_id, request_id)
           GdsApi::GovukHeaders.set_header(:x_govuk_authenticated_user, authenticated_user)
+          Sidekiq::Context.add("govuk_request_id", request_id)
         end
 
         yield
