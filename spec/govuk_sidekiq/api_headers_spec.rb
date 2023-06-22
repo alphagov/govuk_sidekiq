@@ -19,7 +19,6 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
-        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -34,7 +33,6 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(preexisting_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(preexisting_authenticated_user)
-        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => preexisting_request_id })
       end
     end
 
@@ -48,7 +46,6 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
-        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -62,7 +59,6 @@ RSpec.describe GovukSidekiq::APIHeaders do
       described_class.new.call("worker_class", job, "queue", "redis_pool") do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
-        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
 
@@ -77,7 +73,6 @@ RSpec.describe GovukSidekiq::APIHeaders do
         expect(job["args"].last["request_id"]).to eq(govuk_request_id)
         expect(job["args"].last["other_request_id"]).to eq(preexisting_request_id)
         expect(job["args"].last["authenticated_user"]).to eq(govuk_authenticated_user)
-        expect(Sidekiq::Context.current).to eq({ "govuk_request_id" => govuk_request_id })
       end
     end
   end

@@ -1,3 +1,7 @@
+# 7.1.1
+
+* Remove context adding logic from sidekiq client middleware
+
 # 7.1.0
 
 * Add govuk_request_id to Sidekiq::Context so it will be included in logging

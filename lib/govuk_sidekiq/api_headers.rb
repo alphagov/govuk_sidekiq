@@ -10,15 +10,12 @@ module GovukSidekiq
     class ClientMiddleware
       def call(_worker_class, job, _queue, _redis_pool)
         last_arg = job["args"].last
-
         if is_header_hash(last_arg)
           job["args"].pop
           job["args"] << header_arguments.merge(last_arg)
         else
           job["args"] << header_arguments
         end
-        Sidekiq::Context.add("govuk_request_id", job["args"].last["request_id"])
-
         yield
       end
 
