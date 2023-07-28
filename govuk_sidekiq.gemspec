@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "railties", "~> 7"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.4"
-  spec.add_development_dependency "rubocop-govuk", "4.11.0"
+  spec.add_development_dependency "rubocop-govuk", "4.12.0"
 end
