@@ -1,4 +1,4 @@
-# Unreleased
+# 7.1.2
 
 * Allow newer non-major versions of Sidekiq
 
