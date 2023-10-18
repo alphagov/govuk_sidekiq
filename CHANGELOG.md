@@ -1,3 +1,7 @@
+# Unreleased
+
+* Allow newer non-major versions of Sidekiq
+
 # 7.1.1
 
 * Remove context adding logic from sidekiq client middleware
