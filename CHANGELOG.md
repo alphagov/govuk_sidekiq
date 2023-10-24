@@ -1,3 +1,7 @@
+# 7.1.3
+
+* Fix Sidekiq requirement to ~> 6.5 so that Bundler won't install v7.0.0.beta1
+
 # 7.1.2
 
 * Allow newer non-major versions of Sidekiq
