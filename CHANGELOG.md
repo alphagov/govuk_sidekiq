@@ -1,4 +1,4 @@
-# Unreleased
+# 7.1.4
 
 * Require sidekiq > 6.5.10 and < 7
 
