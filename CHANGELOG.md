@@ -1,4 +1,4 @@
-# Unreleased
+# 7.1.5
 
 * Redefine sidekiq requirement so Bundler won't install 7.0.0.beta1
 
