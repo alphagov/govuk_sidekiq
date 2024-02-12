@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = Dir.glob("test/**/*")
   spec.require_paths = %w[lib]
 
-  spec.required_ruby_version = ">= 3.3"
+  spec.required_ruby_version = ">= 3.1.4"
 
   spec.add_dependency "gds-api-adapters", ">= 19.1.0"
   spec.add_dependency "govuk_app_config", ">= 1.1"
