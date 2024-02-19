@@ -7,9 +7,9 @@ module GovukSidekiq
       hash = {
         "@timestamp": time.utc.iso8601(3),
         pid: ::Process.pid,
-        tid: tid,
+        tid:,
         level: severity,
-        message: message,
+        message:,
         tags: %w[sidekiq],
       }
       ctx.each { |key, value| hash[key] = value unless hash[key] }

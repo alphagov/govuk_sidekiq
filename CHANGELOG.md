@@ -1,3 +1,8 @@
+# Unreleased
+
+* Drop support for Ruby 3.0. The minimum required Ruby version is now 3.1.4.
+* Add support for Ruby 3.3.
+
 # 7.1.5
 
 * Redefine sidekiq requirement so Bundler won't install 7.0.0.beta1
