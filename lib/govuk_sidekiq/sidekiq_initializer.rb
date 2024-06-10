@@ -7,7 +7,12 @@ module GovukSidekiq
     def self.setup_sidekiq(govuk_app_name, redis_config = {})
       redis_config = redis_config.merge(
         namespace: govuk_app_name,
-        reconnect_attempts: 1,
+        reconnect_attempts: [
+          0,
+          15,
+          30,
+          60,
+        ],
       )
 
       Sidekiq.configure_server do |config|
