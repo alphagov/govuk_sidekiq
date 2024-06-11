@@ -1,3 +1,7 @@
+# Unreleased
+
+* Fix support for `reconnect_attempts` not working with Redis 4.8 (which is required due to the sidekiq version specified)
+
 # 8.0.0
 
 * BREAKING: Drop support for Ruby 3.0. The minimum required Ruby version is now 3.1.4.
