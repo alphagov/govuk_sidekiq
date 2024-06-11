@@ -1,4 +1,4 @@
-# Unreleased
+# 8.0.1
 
 * Fix support for `reconnect_attempts` not working with Redis 4.8 (which is required due to the sidekiq version specified)
 
