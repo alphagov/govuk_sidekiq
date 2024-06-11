@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "gds-api-adapters", ">= 19.1.0"
   spec.add_dependency "govuk_app_config", ">= 1.1"
-  spec.add_dependency "redis", "< 5"
+  spec.add_dependency "redis", "< 6"
   spec.add_dependency "redis-namespace", "~> 1.6"
   spec.add_dependency "sidekiq", "~> 6.5", ">= 6.5.12"
 
