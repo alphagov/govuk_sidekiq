@@ -3,7 +3,7 @@ require "govuk_sidekiq/sidekiq_initializer"
 
 RSpec.describe "Check a Sidekiq Worker can perform" do
   before do
-    GovukSidekiq::SidekiqInitializer.setup_sidekiq("test_app", {})
+    GovukSidekiq::SidekiqInitializer.setup_sidekiq({})
   end
 
   it "can run the test worker" do

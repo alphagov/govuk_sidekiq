@@ -6,7 +6,6 @@ module GovukSidekiq
   module SidekiqInitializer
     def self.setup_sidekiq(govuk_app_name, redis_config = {})
       redis_config = redis_config.merge(
-        namespace: govuk_app_name,
         reconnect_attempts: 4,
         reconnect_delay: 15,
         reconnect_delay_max: 60,
