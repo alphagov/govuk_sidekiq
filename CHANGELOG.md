@@ -2,6 +2,7 @@
 
 * Switch from using `redis` gem to `redis-client`
 * BREAKING: Remove `redis-namespace` dependency and support for Redis namespaces
+* BREAKING: Upgrade Sidekiq to version 7.0
 
 # 8.0.1
 

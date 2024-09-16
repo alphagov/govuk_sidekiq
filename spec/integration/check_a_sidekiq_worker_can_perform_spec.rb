@@ -3,6 +3,7 @@ require "govuk_sidekiq/sidekiq_initializer"
 
 RSpec.describe "Check a Sidekiq Worker can perform" do
   before do
+    ENV["REDIS_URL"] = "redis://redis"
     GovukSidekiq::SidekiqInitializer.setup_sidekiq({})
   end
 
