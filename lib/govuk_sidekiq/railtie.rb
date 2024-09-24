@@ -2,11 +2,15 @@ require "govuk_sidekiq/sidekiq_initializer"
 
 module GovukSidekiq
   class Railtie < Rails::Railtie
-    initializer "govuk_sidekiq.initialize_sidekiq" do |app|
+    initializer "govuk_sidekiq.initialize_sidekiq" do
       SidekiqInitializer.setup_sidekiq(
-        ENV.fetch("GOVUK_APP_NAME", app.root.basename.to_s),
         { url: ENV.fetch("REDIS_URL", "redis://127.0.0.1:6379") },
       )
+    end
+
+    rake_tasks do
+      path = File.expand_path(__dir__)
+      Dir.glob("#{path}/tasks/**/*.rake").each { |f| load f }
     end
   end
 end

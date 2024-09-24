@@ -4,13 +4,8 @@ require "govuk_sidekiq/govuk_json_formatter"
 
 module GovukSidekiq
   module SidekiqInitializer
-    def self.setup_sidekiq(govuk_app_name, redis_config = {})
-      redis_config = redis_config.merge(
-        namespace: govuk_app_name,
-        reconnect_attempts: 4,
-        reconnect_delay: 15,
-        reconnect_delay_max: 60,
-      )
+    def self.setup_sidekiq(redis_config = {})
+      redis_config = redis_config.merge(reconnect_attempts: [15, 30, 45, 60])
 
       Sidekiq.configure_server do |config|
         # $real_stdout is defined by govuk_app_config and is used to point to
@@ -21,7 +16,7 @@ module GovukSidekiq
         # rubocop:disable Style/GlobalVars
         config.logger = Sidekiq::Logger.new($real_stdout) if defined?($real_stdout)
         # rubocop:enable Style/GlobalVars
-        config.log_formatter = GovukSidekiq::GovukJsonFormatter.new if ENV["GOVUK_SIDEKIQ_JSON_LOGGING"]
+        config.logger.formatter = GovukSidekiq::GovukJsonFormatter.new if ENV["GOVUK_SIDEKIQ_JSON_LOGGING"]
 
         config.redis = redis_config
 
