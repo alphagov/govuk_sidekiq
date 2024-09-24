@@ -1,4 +1,4 @@
-# Unreleased
+# 9.0.0
 
 * Switch from using `redis` gem to `redis-client`
 * BREAKING: Remove `redis-namespace` dependency and support for Redis namespaces
