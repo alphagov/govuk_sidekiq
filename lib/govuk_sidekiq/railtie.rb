@@ -7,5 +7,10 @@ module GovukSidekiq
         { url: ENV.fetch("REDIS_URL", "redis://127.0.0.1:6379") },
       )
     end
+
+    rake_tasks do
+      path = File.expand_path(__dir__)
+      Dir.glob("#{path}/tasks/**/*.rake").each { |f| load f }
+    end
   end
 end

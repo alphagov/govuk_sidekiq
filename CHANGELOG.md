@@ -2,6 +2,7 @@
 
 * Switch from using `redis` gem to `redis-client`
 * BREAKING: Remove `redis-namespace` dependency and support for Redis namespaces
+  * Run the `redis_namespace:remove_namespace` rake task immediately after upgrading to to this version, to retain existing queued jobs.
 * BREAKING: Upgrade Sidekiq to version 7.0, follow these steps to upgrade:
   1. `Sidekiq::Worker` has been deprecated in Sidekiq 7. Replace all instances of `Sidekiq::Worker` with `Sidekiq::Job`, then rename/move your workers to be `app/sidekiq/MyJob.rb` instead of `app/workers/MyWorker.rb`.
   1. Remove the requirement for Sidekiq strict arguments from `config/initializers/sidekiq.rb`. This was added to include Sidekiq 7 strict arguments behaviour in Sidekiq 6, but is no longer needed to be explictly required, since this is now the default behaviour.
