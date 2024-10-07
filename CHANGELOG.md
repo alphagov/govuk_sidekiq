@@ -1,4 +1,4 @@
-# Unreleased
+# 9.0.1
 
 * Allow setting of Redis SSL `verify_mode` to none via environment variable
 
