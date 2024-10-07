@@ -25,4 +25,14 @@ RSpec.describe GovukSidekiq::Railtie do
       described_class.initializers.first.run(app)
     end
   end
+
+  it "can set Redis SSL verify_mode to none via an env var" do
+    ClimateControl.modify REDIS_SSL_VERIFY_NONE: "true" do
+      expect(GovukSidekiq::SidekiqInitializer)
+        .to receive(:setup_sidekiq)
+        .with(default_redis_configuration.merge({ ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE } }))
+
+      described_class.initializers.first.run(app)
+    end
+  end
 end

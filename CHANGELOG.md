@@ -1,3 +1,7 @@
+# Unreleased
+
+* Allow setting of Redis SSL `verify_mode` to none via environment variable
+
 # 9.0.0
 
 * Switch from using `redis` gem to `redis-client`
