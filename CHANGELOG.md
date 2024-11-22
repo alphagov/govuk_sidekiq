@@ -1,8 +1,10 @@
-# 9.0.1
+# Changelog
+
+## 9.0.1
 
 * Allow setting of Redis SSL `verify_mode` to none via environment variable
 
-# 9.0.0
+## 9.0.0
 
 * Switch from using `redis` gem to `redis-client`
 * BREAKING: Remove `redis-namespace` dependency and support for Redis namespaces
@@ -13,81 +15,81 @@
   1. If using `sidekiq-unique-jobs`, pin to < 8.0.8 until [a known issue](https://github.com/mhenrixon/sidekiq-unique-jobs/issues/846) is resolved.
   1. Make any changes required based on the information in the [Sidekiq 7 API migration guide](https://github.com/sidekiq/sidekiq/blob/main/docs/7.0-API-Migration.md).
 
-# 8.0.1
+## 8.0.1
 
 * Fix support for `reconnect_attempts` not working with Redis 4.8 (which is required due to the sidekiq version specified)
 
-# 8.0.0
+## 8.0.0
 
 * BREAKING: Drop support for Ruby 3.0. The minimum required Ruby version is now 3.1.4.
 * Add support for Ruby 3.3.
 * Update Redis reconnect attempt strategy to retry more times.
 
-# 7.1.5
+## 7.1.5
 
 * Redefine sidekiq requirement so Bundler won't install 7.0.0.beta1
 
-# 7.1.4
+## 7.1.4
 
 * Require sidekiq > 6.5.10 and < 7
 
-# 7.1.3
+## 7.1.3
 
 * Fix Sidekiq requirement to ~> 6.5 so that Bundler won't install v7.0.0.beta1
 
-# 7.1.2
+## 7.1.2
 
 * Allow newer non-major versions of Sidekiq
 
-# 7.1.1
+## 7.1.1
 
 * Remove context adding logic from sidekiq client middleware
 
-# 7.1.0
+## 7.1.0
 
 * Add govuk_request_id to Sidekiq::Context so it will be included in logging
 * Introduce a GOV.UK Logging format which has a field structure similar to GOV.UK's Rails logstasher for consistent field names
 
-# 7.0.0
+## 7.0.0
 
 * BREAKING: Drop support for Ruby 2.7
 * BREAKING: Remove support for Statsd, as this is being [deprecated from `govuk_app_config` in a later release](https://github.com/alphagov/govuk_app_config/commit/71f4f2fa3871721e5c8140bcf73d683e09d8d7b2)
 
-# 6.0.0
+## 6.0.0
 * BREAKING: Upgrades the underlying version of Sidekiq to version 6. Will require changes to logging strategy;
 
 * Sidekiq arguments need to serialize safely to JSON otherwise [a warning is shown](https://github.com/mperham/sidekiq/blob/main/Changes.md#640)
 * Logging to a file no longer supported, must use STDOUT or STDERR
 
-# 5.0.0
+## 5.0.0
 
 * BREAKING: Redis is configured with REDIS_URL environment, the previous approach (REDIS_HOST and REDIS_PORT) is no longer supported.
 
-# 4.0.0
+## 4.0.0
 
 * BREAKING: Set the required Ruby version to >= 2.6
 
-# 3.0.5
+## 3.0.5
 
 * Pin sidekiq-statsd above 2.1.0 (so we get new metrics).
 
-# 3.0.4
+## 3.0.4
 
 * Allow for newer versions of sidekiq-statsd (trial period).
 
-# 3.0.3
+## 3.0.3
 
 * Only use JSON logging when a log file is specified
 
-# 3.0.2
+## 3.0.2
 
 * Set the `request_id` even if the `govuk_authenticated_user` is missing, and vice versa.
 
-# 3.0.1
+## 3.0.1
 
 * Do not add API middleware arguments if they already exist.
 
-# 3.0.0
+## 3.0.0
 
 * BREAKING. Your statsd namespace will likely change with this version, to a
 form of `govuk.app.<app_name>.<hostname>` unless you are already using
@@ -97,7 +99,7 @@ the `GOVUK_STATSD_PREFIX` environment variable for your statsd.
 * Introduce dependency on [govuk_app_config](https://github.com/alphagov/govuk_app_config)
 * Use GovukStatsd as the statsd client for sidekiq-statsd
 
-# 2.0.0
+## 2.0.0
 
 * BREAKING. Remove automatic integration with Airbrake, as we are moving to use Sentry. To keep using this gem with Airbrake you can still add the following to an initialiser:
 
@@ -109,28 +111,28 @@ Sidekiq.configure_server do |config|
 end
 ```
 
-# 1.0.3
+## 1.0.3
 
 * Explicitly set `reconnect_attempts: 1` in client and server configuration,
   to fix Sidekiq regression.
 
-# 1.0.2
+## 1.0.2
 
 * Upgrade to Sidekiq 4.2.8.
 
-# 1.0.1
+## 1.0.1
 
 * Upgrade to Sidekiq 4.2.2.
 
-# 1.0.0
+## 1.0.0
 
 * No changes. Version bump to indicate gem is stable.
 
-# 0.0.4
+## 0.0.4
 
 * Add support for testing with `govuk_sidekiq/testing`
 
-# 0.0.1
+## 0.0.1
 
 * Create a gem which automatically configures Sidekiq.
 
