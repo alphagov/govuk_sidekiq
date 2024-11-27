@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.2
+
+* Update dependencies
+
 ## 9.0.1
 
 * Allow setting of Redis SSL `verify_mode` to none via environment variable
