@@ -1,8 +1,8 @@
-# 9.0.3
+# Changelog
+
+## 9.0.3
 
 * Update dependencies
-
-# Changelog
 
 ## 9.0.2
 
