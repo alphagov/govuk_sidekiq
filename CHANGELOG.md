@@ -1,5 +1,8 @@
 # Changelog
 
+* Allow clients to pass in own value for Redis reconnect_attempts
+* Reduce Redis reconnection timeout from 15-60s to 0.05-5s
+
 ## 9.0.3
 
 * Update dependencies
