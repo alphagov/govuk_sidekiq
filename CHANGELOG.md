@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 9.0.5
 
 * Remove obsolete Redis namespaces Rake task
 
