@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.5
+
+* Remove obsolete Redis namespaces Rake task
+
 ## 9.0.4
 
 * Allow clients to pass in own value for Redis reconnect_attempts
@@ -69,6 +73,7 @@
 * BREAKING: Remove support for Statsd, as this is being [deprecated from `govuk_app_config` in a later release](https://github.com/alphagov/govuk_app_config/commit/71f4f2fa3871721e5c8140bcf73d683e09d8d7b2)
 
 ## 6.0.0
+
 * BREAKING: Upgrades the underlying version of Sidekiq to version 6. Will require changes to logging strategy;
 
 * Sidekiq arguments need to serialize safely to JSON otherwise [a warning is shown](https://github.com/mperham/sidekiq/blob/main/Changes.md#640)
