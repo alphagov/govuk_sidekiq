@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.6
+
+* Reinstate a couple of the old longer Redis reconnection retries
+
 ## 9.0.5
 
 * Remove obsolete Redis namespaces Rake task
