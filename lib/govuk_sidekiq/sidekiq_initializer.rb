@@ -5,7 +5,7 @@ require "govuk_sidekiq/govuk_json_formatter"
 module GovukSidekiq
   module SidekiqInitializer
     def self.setup_sidekiq(redis_config = {})
-      redis_config[:reconnect_attempts] ||= [0.05, 0.25, 1, 5]
+      redis_config[:reconnect_attempts] ||= [0.05, 0.25, 1, 5, 15, 30]
 
       Sidekiq.configure_server do |config|
         # $real_stdout is defined by govuk_app_config and is used to point to
