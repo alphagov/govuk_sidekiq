@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 9.0.6
 
 * Reinstate a couple of the old longer Redis reconnection retries
 
