@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* BREAKING: Drop support for Ruby 3.1 [PR](https://github.com/alphagov/govuk_sidekiq/pull/139)
+
 ## 9.0.6
 
 * Reinstate a couple of the old longer Redis reconnection retries
