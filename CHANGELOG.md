@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 10.0.0
 
 * BREAKING: Drop support for Ruby 3.1 [PR](https://github.com/alphagov/govuk_sidekiq/pull/139)
 
