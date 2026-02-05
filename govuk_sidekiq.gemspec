@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sidekiq", "~> 7.0", "< 8"
 
   spec.add_development_dependency "climate_control", "~> 1.2"
+  spec.add_development_dependency "gds-sso", "~> 22.1"
   spec.add_development_dependency "railties", "~> 8"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.4"

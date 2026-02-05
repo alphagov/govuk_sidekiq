@@ -79,6 +79,19 @@ correctly, replace `require 'sidekiq/testing'` with:
 require 'govuk_sidekiq/testing'
 ```
 
+## Sidekiq Web UI
+
+To make the Sidekiq Web UI accessible at `/sidekiq` in a Rails app:
+
+- the app must be using Warden via [gds-sso](https://github.com/alphagov/gds-sso)
+- the app must have a `Sidekiq Admin` permission in Signon
+- the logged-in user must have the `Sidekiq Admin` permission for the app
+- the following code must be added to your application's `config/routes.rb` file:
+
+```ruby
+mount GovukSidekiq::GdsSsoMiddleware, at: "/sidekiq"
+```
+
 ## Licence
 
 [MIT License](LICENCE)

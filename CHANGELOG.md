@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.1.0
+
+* Add support for Rails apps to run Sidekiq Web behind an authentication layer ([PR](https://github.com/alphagov/govuk_sidekiq/pull/170))
+
 ## 10.0.0
 
 * BREAKING: Drop support for Ruby 3.1 [PR](https://github.com/alphagov/govuk_sidekiq/pull/139)
