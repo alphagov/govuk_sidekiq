@@ -28,6 +28,8 @@ module GovukSidekiq
       Sidekiq.configure_client do |config|
         config.redis = redis_config
 
+        config.logger.formatter = GovukSidekiq::GovukJsonFormatter.new if ENV["GOVUK_SIDEKIQ_JSON_LOGGING"]
+
         config.client_middleware do |chain|
           chain.add GovukSidekiq::APIHeaders::ClientMiddleware
         end
