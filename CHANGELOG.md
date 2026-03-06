@@ -1,5 +1,16 @@
 # Changelog
 
+## 11.0.0
+
+* BREAKING: Use JSON for client logs (logs produced when pushing jobs to the
+  queue)
+
+  This is more of a fix to restore JSON logging globally which was likely
+  unintentionally limited to server logs (logs produced when processing jobs) in
+  govuk_sidekiq 6.0.0 when upgrading to Sidekiq 6, but treating it as a breaking
+  change since the current behaviour has been in place for a few years and major
+  versions.
+
 ## 10.1.0
 
 * Add support for Rails apps to run Sidekiq Web behind an authentication layer ([PR](https://github.com/alphagov/govuk_sidekiq/pull/170))
