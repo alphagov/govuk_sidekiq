@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.0.1
+
+* Temporarily revert to pretty printing client logs until we're prepared to
+  consume the JSON logs
+
 ## 11.0.0
 
 * BREAKING: Use JSON for client logs (logs produced when pushing jobs to the
