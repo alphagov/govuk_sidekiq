@@ -3,7 +3,7 @@
 ## 11.0.0
 
 * BREAKING: Use JSON for client logs (logs produced when pushing jobs to the
-  queue)
+  queue; [PR](https://github.com/alphagov/govuk_sidekiq/pull/171))
 
   This is more of a fix to restore JSON logging globally which was likely
   unintentionally limited to server logs (logs produced when processing jobs) in
