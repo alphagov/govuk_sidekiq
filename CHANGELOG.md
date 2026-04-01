@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.1.0
+
+* Drop support for Ruby 3.2
+
 ## 11.0.1
 
 * Temporarily revert to pretty printing client logs until we're prepared to
