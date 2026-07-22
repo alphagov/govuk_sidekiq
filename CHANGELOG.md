@@ -1,5 +1,11 @@
 # Changelog
 
+## 12.0.0
+
+* BREAKING: Update Sidekiq to version 8, with minimum version 8.1.1.
+  This release introduces a new [testing API](https://sidekiq.org/wiki/Testing#new-api), which requires making a one-line change wherever `require sidekiq/testing` is currently used.
+  The old testing API will be deprecated in Sidekiq 9.0.
+
 ## 11.1.0
 
 * Drop support for Ruby 3.2
