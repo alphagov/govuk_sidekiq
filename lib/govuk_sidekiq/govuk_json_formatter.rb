@@ -12,7 +12,7 @@ module GovukSidekiq
         message:,
         tags: %w[sidekiq],
       }
-      ctx.each { |key, value| hash[key] = value unless hash[key] }
+      Sidekiq::Context.current.each { |key, value| hash[key] = value unless hash[key] }
       Sidekiq.dump_json(hash) << "\n"
     end
   end
