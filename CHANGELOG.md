@@ -6,9 +6,17 @@
   This release introduces a new [testing API](https://sidekiq.org/wiki/Testing#new-api), which requires making a one-line change wherever `require sidekiq/testing` is currently used.
   The old testing API will be deprecated in Sidekiq 9.0.
 
-## 11.1.0
+## 11.1.2
 
 * Drop support for Ruby 3.2
+
+## 11.1.1
+
+* _version skipped_
+
+## 11.1.0
+
+* _version skipped_
 
 ## 11.0.1
 
